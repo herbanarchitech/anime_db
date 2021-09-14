@@ -7,6 +7,7 @@ import GhilbiStudio from 'from ./GhilbiStudio'
 import SunRiseInc from './SunRiseInc' 
 
 
+
 const App =() => {
 	return(
 		<div id="app"> 
@@ -31,6 +32,7 @@ const App =() => {
 					
 				</Route>
 
+			</Switch>
 
 
 		<Footer />
