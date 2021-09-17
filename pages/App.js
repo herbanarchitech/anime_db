@@ -3,12 +3,15 @@ import '../App.css';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import {BrowserRouter as Router , Switch, Route} from 'react-router-dom'
-import GhilbiStudio from './GhibliStudio'
-import SunRiseInc from './SunRiseInc';
-import Kyoto from './Kyoto';
+import Movie from './Movie'
+//import All  from './All';
 
-
-const App =() => {
+// scrap plan make the nav to single to only miyazaki so that one api can actually work 
+//potentially create three links for navbar movie ,director, all 
+//url: https://ghibliapi.herokuapp.com/#tag/Films%2Fpaths%2F~1films%2Fget 
+// this will be used to quert ALL the films 
+//===OBJECTIVE === get the main call to work======  
+function App() {
 	return(
 		<div id="app"> 
 		<Router>
@@ -18,19 +21,19 @@ const App =() => {
 				
 
 				<Route exact path="/">
-					<GhilbiStudio />
+					<Movie />
 				</Route>
 
 		   		<Route exact path="/kyoto">
 
-					<Kyoto />
+				{/*	<Kyoto /> */}
 					
 				</Route>
 
 				<Route exact path="/SunriseInc">
 
-					< SunRiseInc/>
-					
+					{/*< SunRiseInc/> */}
+ 					
 				</Route>
 
 			</Switch>
