@@ -1,77 +1,68 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+//import ReactDOM from "react-dom";
+import axios from "axios";
 
+//import "./styles.css";
 
-const GhibliStudios = () => {
-const [ghibliURL, setGhibliURL] = useState([]);
-const [query, setQuery] =useState("");
+const Movie =()=> {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [filmsFiltered, setFilmsFiltered] = useState([]);
 
-const onChange =(e) => {
-	e.preventDefault();
-	setQuery(e.target.value)
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("https://ghibliapi.herokuapp.com/films")
+      .then((res) => {
+        setMovies(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    setFilmsFiltered(
+      movies.filter((country) =>
+        country.title.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, movies]);
+
+  if (loading) {
+    return <p>Loading movies...</p>;
+  }
+
+  return (
+    <div className="App">
+      <h1>Ghibli Studio Movies </h1>
+ 
+      <input
+        type="text"
+        placeholder="look for films here"
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {filmsFiltered.map((title) => (
+        <CountryDetails key={title} {...title} />
+      ))}
+    </div>
+  );
+}
+
+const CountryDetails = (props) => {
+  const { title } = props;
+
+  return (
+    <>
+      <p>
+       {title}
+      </p>
+    {/*  <p>
+      Director:  {director} </p> */}
+    </>
+  );
 };
-{/*this is where you make call for this studio
-what you need: api url key, 
-if dedided to use axios; make sure to import library here!
+export default Movie
 
-search will be form 
-repeate this process for the rest of the other studios 
-
-DRY: Make one successful then apply it to other pages / studios 
-{/*
-This will be used as the bae url */}
-useEffect(() => {
-	console.log("We are mounting Ghibli studio film");
-
-	const fetchInfo = async () => {
-		try{
-			const response = await axios.get('https://ghibliapi.herokuapp.com/films');
-
-			console.log('if this works , this the data from the Ghibli studuis', response.data);
-
-			setGhibliURL(response.data)
-
-		}catch(err) {
-
-			console.log(err);
-
-
-		}
-
-	}
-	fetchInfo()
-
-
-}, [])
-
-
-
-const showMovieTitles = () => {
-
-	fetch('https://ghibliapi.herokuapp.com/films')
-	.then(response => response.json())
-	.then(film =>setGhibliURL(film.data.title))
-	.catch(err => console.log(err))
-
-
-}
-
-
-return(
-    <div className="Movie_List">
-		<div className="container">
-			<div className="add-content">
-				<div className="input-wrapper">
-					<input type="text" 
-					placeholder="enter text for film title"
-					 value={query} onChange={onChange}/>
-					 </div>
-					 </div>
-					 </div>
-	</div>
-
-
-)
-}
-
-export default GhibliStudios;
