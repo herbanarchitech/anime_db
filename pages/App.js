@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import {BrowserRouter as Router , Switch, Route} from 'react-router-dom'
 import Movie from './Movie'
-//import All  from './All';
+import Producer from './Producer'
 
 // scrap plan make the nav to single to only miyazaki so that one api can actually work 
 //potentially create three links for navbar movie ,director, all 
@@ -24,9 +24,9 @@ function App() {
 					<Movie />
 				</Route>
 
-		   		<Route exact path="/kyoto">
+		   		<Route exact path="/Producer">
 
-				{/*	<Kyoto /> */}
+					<Producer /> 
 					
 				</Route>
 

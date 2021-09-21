@@ -45,13 +45,13 @@ const Movie =()=> {
         onChange={(e) => setSearch(e.target.value)}
       />
       {filmsFiltered.map((title) => (
-        <CountryDetails key={title} {...title} />
+        <MovieDetails key={title} {...title} />
       ))}
     </div>
   );
 }
 
-const CountryDetails = (props) => {
+const MovieDetails = (props) => {
   const { title } = props;
 
   return (
