@@ -11,11 +11,11 @@ const NavBar =() => {
 		</li>
 
 		<li>
-		<Link to="/kyoto"> Kyoto</Link>
+		<Link to="/producer"> Producer</Link>
 		</li>
 		
 		<li>
-		<Link to="/sunrise">Sunrise </Link>
+		<Link to="/sunrise">Genre </Link>
 		</li>
 
 		</ul>
