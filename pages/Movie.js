@@ -25,8 +25,8 @@ const Movie =()=> {
 
   useEffect(() => {
     setFilmsFiltered(
-      movies.filter((country) =>
-        country.title.toLowerCase().includes(search.toLowerCase())
+      movies.filter((film) =>
+        film.title.toLowerCase().includes(search.toLowerCase())
       )
     );
   }, [search, movies]);
