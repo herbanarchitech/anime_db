@@ -15,7 +15,7 @@ const NavBar =() => {
 		</li>
 		
 		<li>
-		<Link to="/sunrise">Genre </Link>
+		<Link to="/genre">Genre </Link>
 		</li>
 
 		</ul>
